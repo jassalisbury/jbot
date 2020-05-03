@@ -4,9 +4,11 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const _ = require('lodash');
 const F = require('bad-words');
+const env = require('node-env-file');
 const filter = new F();
 
 // init
+env(__dirname + '/.env');
 const rawInsults = fs.readFileSync('insults.csv', "utf8");
 const insults = rawInsults.split(',');
 const rawNouns = fs.readFileSync('nouns.csv', "utf8");
@@ -210,4 +212,4 @@ client.on("voiceStateUpdate", async function(oldState, newState) {
     }
 })
 
-client.login('');
+client.login(process.env.TOKEN);
