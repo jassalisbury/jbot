@@ -29,6 +29,8 @@ const J_BOT = '705089896850653295';
 const DEFAULT = 'DEFAULT';
 const CMD = 'jbot';
 
+const VERSION = '1';
+
 const users = {
     [WYATT]: {
         name: 'wyatt',
@@ -145,6 +147,8 @@ function runCommand(str, message) {
         broadcastVoice(message, './TOOLTIME', tooltime);
     } else if (command.includes('philly')) {
         broadcastVoice(message, './PHILLY', philly);
+    } else if (command === 'version') {
+        message.channel.send(VERSION);
     }
 }
 
