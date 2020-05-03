@@ -25,9 +25,21 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - name: rsync deployments
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_TOKEN: ${{ secrets.TOKEN }}
+        file_name: .env
+    - name: Rsync Jbot
       uses: contention/rsync-deployments@v1.0.0
       env: 
-        DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
       with:
-        args: "-avzr --delete root@138.68.47.5:/opt/jbot/"
+        args: -avzr --delete root@138.68.47.5:/opt/jbot/
+    - name: Restart Jbot 
+      uses: appleboy/ssh-action@master
+      with:
+        host: 138.68.47.5
+        username: root
+        key: ${{ secrets.DEPLOY_KEY }}
+        script: /opt/jbot/start.sh
