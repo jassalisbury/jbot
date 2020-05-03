@@ -42,6 +42,7 @@ jobs:
         username: root
         key: ${{ secrets.DEPLOY_KEY }}
         script: |
+          cd /opt/jbot
           npm install
-          chmod +x /opt/jbot/start.sh
-          /opt/jbot/start.sh
+          chmod +x ./start.sh
+          ./start.sh
