@@ -36,12 +36,12 @@ jobs:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
       with:
         args: -avzr --delete root@138.68.47.5:/opt/jbot/
-    - name: make start executable
-      run: chmod +x /opt/jbot/start.sh
     - name: Restart Jbot 
       uses: appleboy/ssh-action@master
       with:
         host: 138.68.47.5
         username: root
         key: ${{ secrets.DEPLOY_KEY }}
-        script: /opt/jbot/start.sh
+        script: |
+          chmod +x /opt/jbot/start.sh
+          /opt/jbot/start.sh
