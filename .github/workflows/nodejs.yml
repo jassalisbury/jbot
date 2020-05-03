@@ -45,4 +45,4 @@ jobs:
           cd /opt/jbot
           npm install
           chmod +x ./start.sh
-          ./start.sh &
+          ./start.sh
