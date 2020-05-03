@@ -167,6 +167,7 @@ function respondToMessage(str, user, message) {
 // callbacks
 client.once('ready', () => {
     console.log('Ready!');
+    client.user.setPresence({activity: {type: 3, name: ` for "${CMD}" commands` }, status: 'online'}); 
 });
 
 client.on('message', function(message) {
