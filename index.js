@@ -150,7 +150,7 @@ function respondToMessage(str, user, message) {
         }
     }
 
-    if (filter.isProfane(str) && chance(4)) {
+    if (filter.isProfane(str) && chance(1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
     }
 }
