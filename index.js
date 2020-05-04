@@ -187,12 +187,11 @@ client.on('message', function(message) {
 });
 
 client.on("voiceStateUpdate", async function(oldState, newState) {
-    if (oldState.streaming || newState.streaming) {
+    if (oldState.streaming || newState.streaming || oldState.channelID) {
         return;
     }
 
     if (newState.channelID) {
-        console.log(newState)
         const uid = newState.id;
         let user = users[uid];
         if (user === undefined) {
