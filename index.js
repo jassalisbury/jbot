@@ -117,18 +117,15 @@ function chance(outOfTen) {
     return rand < outOfTen
 }
 
-function broadcastVoice(message, folder, files) {
-    const guildId = message.channel.guild.id;
-    const vc = voiceChannels();
-    const filtered = vc.filter((channel) => {
-        return channel.guild.id === guildId;
-    });
-    const broadcast = client.voice.createBroadcast();
-    broadcast.play(`${folder}/${_.sample(files)}`);
-    filtered.forEach(async (channel) => {
+async function broadcastVoice(message, folder, files) {
+    if (message.member.voice.channel) {
+        const channel = message.member.voice.channel
         const con = await channel.join();
-        con.play(broadcast);
-    });
+        const dispatcher = con.play(`${folder}/${_.sample(files)}`);
+        dispatcher.on('finish', () => {
+            dispatcher.destroy();
+        });
+    }
 }
 
 function runCommand(str, message) {
@@ -144,7 +141,7 @@ function runCommand(str, message) {
     } else if (command === 'boobs') {
         message.channel.send('<https://www.youtube.com/watch?v=oHg5SJYRHA0>');
     } else if (command.includes('tooltime')) {
-        broadcastVoice(message, './TOOLTIME', tooltime);
+        broadcastVoice(message, './TOOLMAN', tooltime);
     } else if (command.includes('philly')) {
         broadcastVoice(message, './PHILLY', philly);
     } else if (command === 'version') {
@@ -171,10 +168,11 @@ client.once('ready', () => {
 });
 
 client.on('message', function(message) {
-    console.log(message);
+    console.log(message)
     const str = message.content.toLowerCase();
     let user = users[message.author.id];
     if (!user) {
+        console.log(`UNKNOWN USER ${message.author.id}`);
         user = users[DEFAULT];
     }
 
