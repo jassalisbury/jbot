@@ -35,12 +35,6 @@ const users = {
     [WYATT]: {
         name: 'wyatt',
         v_intro: './intros/wyatt.mp3',
-        repeat: {
-            freq: function() {
-                return chance(2);
-            },
-            message: 'HOHAOHEHAHAHAHEA'
-        },
     },
     [NATE]: {
         name: 'nate',
