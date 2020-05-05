@@ -162,7 +162,6 @@ client.once('ready', () => {
 });
 
 client.on('message', function(message) {
-    console.log(message)
     const str = message.content.toLowerCase();
     let user = users[message.author.id];
     if (!user) {
