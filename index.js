@@ -141,8 +141,7 @@ function runCommand(str, message) {
         broadcastVoice(message, './PHILLY', philly);
     } else if (command === 'version') {
         message.channel.send(VERSION);
-    } else if (command.includes('loot goblin')) {
-        console.log('yo')
+    } else if (command.includes('goblin')) {
         broadcastVoice(message, './GOBLIN', goblin)
     }
 }
