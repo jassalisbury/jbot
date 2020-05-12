@@ -15,6 +15,7 @@ const rawNouns = fs.readFileSync('nouns.csv', "utf8");
 const nouns = rawNouns.split(',');
 const tooltime = fs.readdirSync('TOOLMAN');
 const philly = fs.readdirSync('PHILLY');
+const goblin = fs.readdirSync('GOBLIN');
 
 // consts
 const JOSH = '355856039003815936';
@@ -140,6 +141,9 @@ function runCommand(str, message) {
         broadcastVoice(message, './PHILLY', philly);
     } else if (command === 'version') {
         message.channel.send(VERSION);
+    } else if (command.includes('loot goblin')) {
+        console.log('yo')
+        broadcastVoice(message, './GOBLIN', goblin)
     }
 }
 
@@ -186,6 +190,7 @@ client.on("voiceStateUpdate", async function(oldState, newState) {
         const uid = newState.id;
         let user = users[uid];
         if (user === undefined) {
+            console.log(`Unknown user ${uid}`)
             user = users[DEFAULT];
         }
 
