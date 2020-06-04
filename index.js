@@ -7,81 +7,39 @@ const F = require('bad-words');
 const env = require('node-env-file');
 const filter = new F();
 
+const users = require('./users.js');
+const client = new Discord.Client();
+
 // init
 env(__dirname + '/.env');
 const rawInsults = fs.readFileSync('insults.csv', "utf8");
 const insults = rawInsults.split(',');
 const rawNouns = fs.readFileSync('nouns.csv', "utf8");
 const nouns = rawNouns.split(',');
-const tooltime = fs.readdirSync('TOOLMAN');
-const philly = fs.readdirSync('PHILLY');
-const goblin = fs.readdirSync('GOBLIN');
-
-// consts
-const JOSH = '355856039003815936';
-const KEVIN = '355869488685514753';
-const NATE = '209483103612174336';
-const WYATT = '159102727887126528';
-const NELSON = '367863632375316482';
-const NICK = '249824869133451264';
-const TANNER = '463493575116849152';
-const RANDOM_BOT = '705141350345080842';
-const J_BOT = '705089896850653295';
-const DEFAULT = 'DEFAULT';
 const CMD = 'jbot';
 
-const VERSION = '1';
+let audioFiles = []
 
-const users = {
-    [WYATT]: {
-        name: 'wyatt',
-        v_intro: './intros/wyatt.mp3',
-    },
-    [NATE]: {
-        name: 'nate',
-        v_intro: './intros/nate.mp3',
-    },
-    [KEVIN]: {
-        name: 'kevin',
-        v_intro: './intros/kevin.mp3',
-    },
-    [JOSH]: {
-        name: 'josh',
-        v_intro: './intros/josh.mp3',
-    },
-    [NELSON]: {
-        name: 'nelson',
-        v_intro: './intros/nelson.mp3',
-        intro: 'ALL HAIL EMPEROR NELSON'
-    },
-    [NICK]: {
-        name: 'nick',
-        v_intro: './intros/nick.mp3',
-        volume_override: 0.8,
-    },
-    [TANNER]: {
-        name: 'tanner',
-        v_intro: './intros/tanner.mp3',
-    },
-    [DEFAULT]: {
-        name: 'unknown',
-        v_intro: './intros/default.mp3',
-    },
-    [RANDOM_BOT]: {
-        name: 'Random Bot',
-        v_intro: null,
-        bot: true,
-    },
-    [J_BOT]: {
-        name: 'Jbot',
-        v_intro: null,
-        bot: true,
-    }
+const audioCategories = [
+    'tooltime',
+    'philly',
+    'goblin',
+    'tourettes',
+];
+
+function readAudioDir(directory) {
+    return fs.readdirSync(directory).map((file) => {
+        return {
+            category: directory,
+            filename: `${directory}/${file}`,
+        };
+    });
 }
 
-const client = new Discord.Client();
+audioCategories.forEach((category) => {
+    audioFiles = audioFiles.concat(readAudioDir(category));
+});
 
-// funcs
 function voiceChannels() {
     return client.channels.cache.filter((channel) => {
         return channel.type === 'voice';
@@ -107,20 +65,17 @@ function processInsult(insultStr, username) {
     }
 }
 
-function chance(outOfTen) {
-    const rand = Math.random() * 10
-    return rand < outOfTen
+function chance(prob) {
+    const rand = Math.random()
+    return rand < prob
 }
 
-async function broadcastVoice(message, folder, files) {
-    if (message.member.voice.channel) {
-        const channel = message.member.voice.channel
-        const con = await channel.join();
-        const dispatcher = con.play(`${folder}/${_.sample(files)}`);
-        dispatcher.on('finish', () => {
-            dispatcher.destroy();
-        });
-    }
+async function broadcastVoice(channel, filename, volume = 0.4) {
+    const con = await channel.join();
+    const dispatcher = con.play(filename, { volume });
+    dispatcher.on('finish', () => {
+        dispatcher.destroy();
+    });
 }
 
 function runCommand(str, message) {
@@ -128,21 +83,27 @@ function runCommand(str, message) {
         return;
     }
 
-    command = str.replace(CMD, '').trim();
+    let command = str.replace(CMD, '').trim();
 
     if (command.startsWith('insult')) {
         const insult = processInsult(command.replace('insult', ''), message.author.username);
         message.channel.send(insult);
     } else if (command === 'boobs') {
         message.channel.send('<https://www.youtube.com/watch?v=oHg5SJYRHA0>');
-    } else if (command.includes('tooltime')) {
-        broadcastVoice(message, './TOOLMAN', tooltime);
-    } else if (command.includes('philly')) {
-        broadcastVoice(message, './PHILLY', philly);
-    } else if (command === 'version') {
-        message.channel.send(VERSION);
-    } else if (command.includes('goblin')) {
-        broadcastVoice(message, './GOBLIN', goblin)
+    } else if (message.member.voice.channel) {
+        const { channel } = message.member.voice;
+        let possibleFiles = audioFiles;
+
+        if (!(command.includes('random'))) {
+            console.log(command)
+            possibleFiles = _.filter(audioFiles, (file) => {
+                return command.includes(file.category);
+            });
+        }
+
+        if (possibleFiles.length !== 0) {
+            broadcastVoice(channel, _.sample(possibleFiles).filename);
+        }
     }
 }
 
@@ -153,7 +114,7 @@ function respondToMessage(str, user, message) {
         }
     }
 
-    if (filter.isProfane(str) && chance(1)) {
+    if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
     }
 }
@@ -200,14 +161,7 @@ client.on("voiceStateUpdate", async function(oldState, newState) {
         const cid = newState.channelID;
         const vc = voiceChannels();
         const channel = vc.get(cid);
-        const connection = await channel.join();
-        const volume = user.volume_override ? user.volume_override : 0.4
-        const dispatcher = connection.play(user.v_intro, {
-            volume: volume,
-        });
-        dispatcher.on('finish', () => {
-            dispatcher.destroy();
-        });
+        broadcastVoice(channel, user.v_intro, user.volume_override);
     }
 })
 
