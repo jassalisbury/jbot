@@ -95,7 +95,6 @@ function runCommand(str, message) {
         let possibleFiles = audioFiles;
 
         if (!(command.includes('random'))) {
-            console.log(command)
             possibleFiles = _.filter(audioFiles, (file) => {
                 return command.includes(file.category);
             });
