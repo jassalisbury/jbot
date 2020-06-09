@@ -17,6 +17,7 @@ const insults = rawInsults.split(',');
 const rawNouns = fs.readFileSync('nouns.csv', "utf8");
 const nouns = rawNouns.split(',');
 const CMD = 'jbot';
+const DEFAULT = 'DEFAULT';
 
 let audioFiles = []
 
