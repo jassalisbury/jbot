@@ -29,6 +29,7 @@ const audioCategories = [
     "wyatt's clips",
     'rick and morty',
     'futurama',
+    'arnold',
 ];
 
 function readAudioDir(directory) {
