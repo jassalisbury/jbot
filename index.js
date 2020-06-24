@@ -28,6 +28,7 @@ const audioCategories = [
     'tourettes',
     "wyatt's clips",
     'rick and morty',
+    'futurama',
 ];
 
 function readAudioDir(directory) {
