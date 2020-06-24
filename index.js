@@ -27,6 +27,7 @@ const audioCategories = [
     'goblin',
     'tourettes',
     "wyatt's clips",
+    'rick and morty',
 ];
 
 function readAudioDir(directory) {
