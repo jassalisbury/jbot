@@ -26,10 +26,9 @@ const audioCategories = [
     'philly',
     'goblin',
     'tourettes',
-    "wyatt's clips",
     'rick and morty',
     'futurama',
-    'arnold',
+    'random',
 ];
 
 function readAudioDir(directory) {
