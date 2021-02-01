@@ -30,6 +30,7 @@ const audioCategories = [
     'futurama',
     'random',
     'gme',
+    'growing on my skin',
 ];
 
 function readAudioDir(directory) {
