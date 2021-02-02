@@ -121,7 +121,9 @@ function respondToMessage(str, user, message) {
             message.channel.send(user.repeat.message);
         }
     }
-
+    if (user.name === 'nelson' && chance(0.1)) {
+        message.channel.send('Shut up :roll_of_paper: :raised_hands:, go sell some more GME');
+    }
     if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
     }
