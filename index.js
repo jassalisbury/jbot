@@ -29,8 +29,9 @@ const audioCategories = [
     'rick and morty',
     'futurama',
     'random',
+    'growing on my skin',
     'stock',
-    'bell'
+    'bell',
 ];
 
 function readAudioDir(directory) {
