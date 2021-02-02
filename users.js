@@ -42,6 +42,10 @@ const users = {
         name: 'tanner',
         v_intro: './intros/tanner.mp3',
     },
+    [JORDAN]: {
+        name: 'jordan',
+        v_intro: './intros/jordan.mp3',
+    },
     [DEFAULT]: {
         name: 'unknown',
         v_intro: './intros/default.mp3',
