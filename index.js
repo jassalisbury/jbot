@@ -96,7 +96,9 @@ function runCommand(str, message) {
         message.channel.send(insult);
     } else if (command === 'boobs') {
         message.channel.send('<https://www.youtube.com/watch?v=oHg5SJYRHA0>');
-    } else if (message.member.voice.channel) {
+    } else if (command === 'are you still in?') {
+        message.channel.send(':gem: :raised_hands: Fuck yeah I am.');
+    }else if (message.member.voice.channel) {
         const { channel } = message.member.voice;
         let possibleFiles = audioFiles;
 
