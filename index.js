@@ -32,6 +32,7 @@ const audioCategories = [
     'growing on my skin',
     'stock',
     'bell',
+    'fish',
 ];
 
 function readAudioDir(directory) {
