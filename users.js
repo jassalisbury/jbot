@@ -9,6 +9,7 @@ const NICK = '249824869133451264';
 const TANNER = '463493575116849152';
 const JORDAN = '225783104189497344';
 const RANDOM_BOT = '705141350345080842';
+const ZACH = '230836793384239125';
 const J_BOT = '705089896850653295';
 const DEFAULT = 'DEFAULT';
 
@@ -46,6 +47,10 @@ const users = {
     [JORDAN]: {
         name: 'jordan',
         v_intro: './intros/jordan.mp3',
+    },
+    [ZACH]: {
+        name: 'zach',
+        v_intro: './intros/zach.mp3',
     },
     [DEFAULT]: {
         name: 'unknown',
