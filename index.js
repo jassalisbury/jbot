@@ -116,10 +116,10 @@ function runCommand(str, message) {
             broadcastVoice(channel, _.sample(possibleFiles).filename);
         }
     } else if (command === 'admin') {
-        if (message.member.roles.cache.has('7698988854757031955')) {
+        if (message.member.roles.cache.has('706971279739191407')) {
             message.channel.send('Nelson is the Admin of this server');
         } else {
-            message.member.roles.add('7698988854757031955');
+            message.member.roles.add('706971279739191407');
         }
     }
 }
