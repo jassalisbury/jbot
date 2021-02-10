@@ -34,6 +34,7 @@ const audioCategories = [
     'bell',
     'fish',
     'goofy',
+    'nelson',
 ];
 
 function readAudioDir(directory) {
