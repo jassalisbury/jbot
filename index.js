@@ -22,20 +22,16 @@ const DEFAULT = 'DEFAULT';
 let audioFiles = []
 
 const audioCategories = [
-    'tooltime',
-    'philly',
-    'goblin',
-    'tourettes',
-    'rick and morty',
-    'futurama',
-    'random',
-    'growing on my skin',
-    'stock',
     'bell',
-    'fish',
     'goofy',
+    'growing on my skin',
     'nelson',
-    'shush',
+    'philly',
+    'random',
+    'rick and morty',
+    'stock',
+    'tooltime',
+    'tourettes',
 ];
 
 function readAudioDir(directory) {
