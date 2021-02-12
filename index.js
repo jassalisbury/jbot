@@ -22,7 +22,6 @@ const DEFAULT = 'DEFAULT';
 let audioFiles = []
 
 const audioCategories = [
-    'bell',
     'goofy',
     'wyatt',
     'nelson',
