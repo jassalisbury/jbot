@@ -27,7 +27,7 @@ const audioCategories = [
     'nelson',
     'philly',
     'random',
-    'rick and morty',
+    'morty',
     'stock',
     'tooltime',
     'tourettes',
