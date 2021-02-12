@@ -39,6 +39,7 @@ function readAudioDir(directory) {
         return {
             category: directory,
             filename: `${directory}/${file}`,
+            name: file.replace('.mp3', '').trim(),
         };
     });
 }
@@ -85,12 +86,25 @@ async function broadcastVoice(channel, filename, volume = 0.4) {
     });
 }
 
+function filesWithCategory(category) {
+    return _.filter(audioFiles, (file) => {
+        return category.includes(file.category);
+    });
+}
+
+function findCategory(command) {
+    return _.find(audioCategories, (category) => {
+        return command.startsWith(category);
+    })
+}
+
 function runCommand(str, message) {
     if (!str.startsWith(CMD)) {
         return;
     }
 
     let command = str.replace(CMD, '').trim();
+    const category = findCategory(command);
 
     if (command.startsWith('insult')) {
         const insult = processInsult(command.replace('insult', ''), message.author.username);
@@ -99,19 +113,33 @@ function runCommand(str, message) {
         message.channel.send('<https://www.youtube.com/watch?v=oHg5SJYRHA0>');
     } else if (command === 'are you still in?') {
         message.channel.send(':gem: :raised_hands: Fuck yeah I am.');
-    } else if (message.member.voice.channel) {
+    } else if (command.startsWith('list')) {
+        const category = command.replace('list', '').trim();
+        if (category) {
+            const files = filesWithCategory(category);
+            message.channel.send(`Files for category '${category}':\n\n${files.map((f) => f.name).join(', ')}\n\ntype "jbot ${category} #file" to play the file`)
+        } else {
+            message.channel.send(`Audio categories:\n\n${audioCategories.join(', ')}\n\ntype "jbot #category list" or "jbot list #category" to view files for each category`)
+        }
+    } else if (category) {
+        const file = command.replace(category, '').trim();
+        const files = filesWithCategory(category);
+
+        if (!file && message.member.voice.channel) {
+            const { channel } = message.member.voice;
+            broadcastVoice(channel, _.sample(files).filename);
+        } else if (file === 'list') {
+            message.channel.send(`Files for category ${category}:\n\n${files.map((f) => f.name).join(', ')}\n\ntype "jbot ${category} #file" to play the file`)
+        } else if (message.member.voice.channel) {
+            const { channel } = message.member.voice;
+            const audio = files.find((f) => f.name === file)
+            if (audio) {
+                broadcastVoice(channel, audio.filename);
+            }
+        }
+    } else if (command === 'random' && message.member.voice.channel) {
         const { channel } = message.member.voice;
-        let possibleFiles = audioFiles;
-
-        if (!(command.includes('random'))) {
-            possibleFiles = _.filter(audioFiles, (file) => {
-                return command.includes(file.category);
-            });
-        }
-
-        if (possibleFiles.length !== 0) {
-            broadcastVoice(channel, _.sample(possibleFiles).filename);
-        }
+        broadcastVoice(channel, _.sample(audioFiles).filename);
     } else if (command === 'admin') {
         if (message.member.roles.cache.has('706971279739191407')) {
             message.channel.send('Nelson is the Admin of this server');
