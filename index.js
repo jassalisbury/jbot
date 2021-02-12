@@ -143,11 +143,9 @@ function runCommand(str, message) {
         const { channel } = message.member.voice;
         broadcastVoice(channel, _.sample(audioFiles).filename);
     } else if (command === 'admin') {
-        if (message.member.roles.cache.has('706971279739191407')) {
-            message.channel.send('Nelson is the Admin of this server');
-        } else {
-            message.member.roles.add('706971279739191407');
-        }
+            if (message.member.roles.cache.some(role => role.name === 'Banned')){
+                message.channel.send('You are banned.');
+            }
     }
 }
 
