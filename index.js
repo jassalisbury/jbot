@@ -31,6 +31,7 @@ const audioCategories = [
     'stock',
     'tooltime',
     'tourettes',
+    'cod',
 ];
 
 function readAudioDir(directory) {
@@ -142,10 +143,6 @@ function runCommand(str, message) {
     } else if (command === 'random' && message.member.voice.channel) {
         const { channel } = message.member.voice;
         broadcastVoice(channel, _.sample(audioFiles).filename);
-    } else if (command === 'admin') {
-            if (message.member.roles.cache.some(role => role.name === 'Banned')){
-                message.channel.send('You are banned.');
-            }
     }
 }
 
