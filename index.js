@@ -24,7 +24,7 @@ let audioFiles = []
 const audioCategories = [
     'bell',
     'goofy',
-    'growing on my skin',
+    'wyatt',
     'nelson',
     'philly',
     'random',
