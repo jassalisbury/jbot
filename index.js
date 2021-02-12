@@ -115,7 +115,7 @@ function runCommand(str, message) {
         message.channel.send(':gem: :raised_hands: Fuck yeah I am.');
     } else if (command.startsWith('list')) {
         const category = command.replace('list', '').trim();
-        if (category) {
+        if (category && category !== 'intros') {
             const files = filesWithCategory(category);
             message.channel.send(`Files for category '${category}':\n\n${files.map((f) => f.name).join(', ')}\n\ntype "jbot ${category} #file" to play the file`)
         } else {
