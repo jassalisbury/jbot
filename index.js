@@ -111,6 +111,8 @@ function runCommand(str, message) {
     } else if (command === 'boobs') {
         message.channel.send('https://discord.gg/y6ewqmRa')
         message.channel.send('<https://www.youtube.com/watch?v=oHg5SJYRHA0>');
+    } else if (command === 'dictator') {
+        message.channel.send('https://discord.gg/z69CCN3F');
     } else if (command === 'are you still in?') {
         message.channel.send(':gem: :raised_hands: Fuck yeah I am.');
     } else if (command.startsWith('list')) {
