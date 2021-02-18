@@ -32,6 +32,7 @@ const audioCategories = [
     'tooltime',
     'tourettes',
     'cod',
+    'whitaker',
 ];
 
 function readAudioDir(directory) {
