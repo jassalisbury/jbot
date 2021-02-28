@@ -11,6 +11,7 @@ const JORDAN = '225783104189497344';
 const RANDOM_BOT = '705141350345080842';
 const ZACH = '230836793384239125';
 const J_BOT = '705089896850653295';
+const KP = '110954163566829568';
 const DEFAULT = 'DEFAULT';
 
 const users = {
@@ -29,6 +30,10 @@ const users = {
     [JOSH]: {
         name: 'josh',
         v_intro: './intros/josh.mp3',
+    },
+    [KP]: {
+        name: 'kp',
+        v_intro: './intros/kp.mp3',
     },
     [NELSON]: {
         name: 'nelson',
