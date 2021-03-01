@@ -12,6 +12,7 @@ const RANDOM_BOT = '705141350345080842';
 const ZACH = '230836793384239125';
 const J_BOT = '705089896850653295';
 const KP = '110954163566829568';
+const JBUTT = '477695309816791040';
 const DEFAULT = 'DEFAULT';
 
 const users = {
@@ -60,6 +61,10 @@ const users = {
     [DEFAULT]: {
         name: 'unknown',
         v_intro: './intros/default.mp3',
+    },
+    [JBUTT]: {
+        name: 'jbutt',
+        v_intro: './intros/jbutt.mp3'
     },
     [RANDOM_BOT]: {
         name: 'Random Bot',
