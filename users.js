@@ -13,6 +13,7 @@ const ZACH = '230836793384239125';
 const J_BOT = '705089896850653295';
 const KP = '110954163566829568';
 const JBUTT = '477695309816791040';
+const PRESTON = '146412187534098442';
 const DEFAULT = 'DEFAULT';
 
 const users = {
@@ -57,6 +58,10 @@ const users = {
     [ZACH]: {
         name: 'zach',
         v_intro: './intros/zach.mp3',
+    },
+    [PRESTON]: {
+        name: 'preston',
+        v_intro: './intros/preston.mp3'
     },
     [DEFAULT]: {
         name: 'unknown',
