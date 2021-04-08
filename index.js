@@ -156,8 +156,8 @@ function respondToMessage(str, user, message) {
     if (user.name === 'nelson' && chance(0.1)) {
         message.channel.send('Shut up :roll_of_paper: :raised_hands:, go sell some more GME');
     }
-    if (user.name === 'wyatt' && chance(0.3)) {
-        message.channel.send('mein Führer @Nargassus from Darnassus, shall I gas the juice?');
+    if (user.name === 'wyatt' && chance(0.05)) {
+        message.channel.send('mein Führer Wyatt, shall I gas the juice?');
     }
     if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
