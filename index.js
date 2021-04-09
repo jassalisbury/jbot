@@ -21,6 +21,10 @@ const DEFAULT = 'DEFAULT';
 
 let audioFiles = []
 
+const wyattcallbacks = [
+    'Sir, is it time to go clean the streets of crackheads?',
+    'Would you rather have a crackhead or a cop behind your house',
+];
 const audioCategories = [
     'goofy',
     'wyatt',
@@ -99,6 +103,12 @@ function findCategory(command) {
     })
 }
 
+function randomCase(myString){
+    return myString.toLowerCase().split('').map(function(c) {
+        return Math.random() < .5? c : c.toUpperCase();
+    }).join('');
+}
+
 function runCommand(str, message) {
     if (!str.startsWith(CMD)) {
         return;
@@ -155,6 +165,12 @@ function respondToMessage(str, user, message) {
     }
     if (user.name === 'nelson' && chance(0.1)) {
         message.channel.send('Shut up :roll_of_paper: :raised_hands:, go sell some more GME');
+    }
+    if (user.name === 'wyatt' && chance(0.1)) {
+
+        callback = randomCase(_.sample(wyattcallbacks));
+
+        message.channel.send(callback);
     }
     if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
