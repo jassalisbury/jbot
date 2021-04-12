@@ -24,6 +24,9 @@ let audioFiles = []
 const wyattcallbacks = [
     'Sir, is it time to go clean the streets of crackheads?',
     'Would you rather have a crackhead or a cop behind your house',
+    'jbot wyatt',
+    'When I do my meths, I walk very goodly',
+    'https://i.imgur.com/O6Xrbja.jpg'
 ];
 const audioCategories = [
     'goofy',
