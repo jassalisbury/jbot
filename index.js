@@ -173,7 +173,6 @@ function respondToMessage(str, user, message) {
     if (user.name === 'wyatt' && chance(0.1)) {
 
         callback = randomCase(_.sample(wyattcallbacks));
-
         message.channel.send(callback);
     }
     if (filter.isProfane(str) && chance(0.1)) {
