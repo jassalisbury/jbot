@@ -34,7 +34,7 @@ const audioCategories = [
     'wyatt',
     'nelson',
     'philly',
-    'random',
+    'stuff',
     'morty',
     'stock',
     'tooltime',
