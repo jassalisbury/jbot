@@ -172,7 +172,12 @@ function respondToMessage(str, user, message) {
     }
     if (user.name === 'wyatt' && chance(0.1)) {
 
+        const { channel } = message.member.voice;
         callback = _.sample(wyattcallbacks);
+
+        if (callback === wyattcallbacks[4]){
+            broadcastVoice(channel, 'random/weknow.mp3');
+        }
         message.channel.send(callback);
     }
     if (filter.isProfane(str) && chance(0.1)) {
