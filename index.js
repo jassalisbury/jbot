@@ -28,6 +28,7 @@ const wyattcallbacks = [
     'https://i.imgur.com/O6Xrbja.jpg',
     'I think we all know who we\'re talking about',
     'https://pbs.twimg.com/media/EZNROQCWsAAd7us.jpg',
+    'https://giphy.com/gifs/6qdhkkhmV5FvceSlvE',
 ];
 const audioCategories = [
     'goofy',
@@ -170,7 +171,7 @@ function respondToMessage(str, user, message) {
     if (user.name === 'nelson' && chance(0.1)) {
         message.channel.send('Shut up :roll_of_paper: :raised_hands:, go sell some more GME');
     }
-    if (user.name === 'wyatt' && chance(0.1)) {
+    if (user.name === 'wyatt' && chance(0.2)) {
 
         const { channel } = message.member.voice;
         callback = _.sample(wyattcallbacks);
