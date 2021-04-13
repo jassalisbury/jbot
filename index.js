@@ -27,7 +27,6 @@ const wyattcallbacks = [
     'When I do my meths, I walk very goodly',
     'https://i.imgur.com/O6Xrbja.jpg',
     'I think we all know who we\'re talking about',
-    'https://pbs.twimg.com/media/EZNROQCWsAAd7us.jpg',
     'https://giphy.com/gifs/6qdhkkhmV5FvceSlvE',
 ];
 const audioCategories = [
