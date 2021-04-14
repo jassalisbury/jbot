@@ -41,6 +41,7 @@ const audioCategories = [
     'tourettes',
     'cod',
     'whitaker',
+    'suckyfucky'
 ];
 
 function readAudioDir(directory) {
