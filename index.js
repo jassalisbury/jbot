@@ -28,6 +28,7 @@ const wyattcallbacks = [
     'https://i.imgur.com/O6Xrbja.jpg',
     'I think we all know who we\'re talking about',
     'https://giphy.com/gifs/6qdhkkhmV5FvceSlvE',
+    'OBJECTION! Speculation',
 ];
 const audioCategories = [
     'goofy',
