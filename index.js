@@ -172,15 +172,15 @@ function respondToMessage(str, user, message) {
     if (user.name === 'nelson' && chance(0.1)) {
         message.channel.send('Shut up :roll_of_paper: :raised_hands:, go sell some more GME');
     }
-    if (user.name === 'wyatt' && chance(0.2)) {
+    //if (user.name === 'wyatt' && chance(0.2)) {
 
-        const { channel } = message.member.voice;
-        callback = _.sample(wyattcallbacks);
+    //    const { channel } = message.member.voice;
+    //    callback = _.sample(wyattcallbacks);
 
-        if (callback === wyattcallbacks[4]){
-            broadcastVoice(channel, 'random/weknow.mp3');
-        }
-        message.channel.send(callback);
+    //    if (callback === wyattcallbacks[4]){
+    //        broadcastVoice(channel, 'random/weknow.mp3');
+    //    }
+    //    message.channel.send(callback);
     }
     if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
