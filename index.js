@@ -172,6 +172,9 @@ function respondToMessage(str, user, message) {
     if (user.name === 'nelson' && chance(0.1)) {
         message.channel.send('go buy a new access point pleeb');
     }
+    if (user.name === 'wyatt' && chance(0.1)) {
+        message.channel.send('go suck a dick for 50k already')
+    }
     if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
     }
