@@ -170,10 +170,13 @@ function respondToMessage(str, user, message) {
         }
     }
     if (user.name === 'nelson' && chance(0.1)) {
-        message.channel.send('go buy a new access point pleeb');
+        message.channel.send('why don\'t you go properly play COD');
     }
     if (user.name === 'wyatt' && chance(0.1)) {
         message.channel.send('go suck a dick for 50k already')
+    }
+    if (user.name === 'jordan' && chance(0.1)) {
+        message.channel.send('bUt MuH sToCkS')
     }
     if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
