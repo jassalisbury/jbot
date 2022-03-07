@@ -59,6 +59,10 @@ const users = {
         name: 'zach',
         v_intro: './intros/zach.mp3',
     },
+    [KURTIS]: {
+        name: 'kurtis',
+        v_intro: './intros/default.mp3'
+    },
     [PRESTON]: {
         name: 'preston',
         v_intro: './intros/preston.mp3'

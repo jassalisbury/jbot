@@ -169,14 +169,17 @@ function respondToMessage(str, user, message) {
             message.channel.send(user.repeat.message);
         }
     }
-    if (user.name === 'nelson' && chance(0.1)) {
-        message.channel.send('why don\'t you go properly play COD');
+    if (user.name === 'nelson' && chance(0.05)) {
+        message.channel.send('do you play anything besides COD');
     }
-    if (user.name === 'wyatt' && chance(0.1)) {
-        message.channel.send('go suck a dick for 50k already')
+    if (user.name === 'wyatt' && chance(0.05)) {
+        message.channel.send('ThAt\'S mY nInJa WaY')
     }
-    if (user.name === 'jordan' && chance(0.1)) {
+    if (user.name === 'jordan' && chance(0.05)) {
         message.channel.send('bUt MuH sToCkS')
+    }
+    if (user.name === 'kurtis' && chance(0.1)) {
+        message.channel.send('shut up rusty')
     }
     if (filter.isProfane(str) && chance(0.1)) {
         message.channel.send(`WATCH YOUR FUCKING LANGUAGE ${genInsult().toUpperCase()}`)
